@@ -25,3 +25,6 @@ dist-ssr
 
 # Config file
 config.json
+
+# Env Files
+.env
