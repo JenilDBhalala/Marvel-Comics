@@ -1,6 +1,4 @@
-import md5 from "md5";
 import { useEffect, useState } from "react";
-import configData from "../../../config.json";
 import ReactPaginate from "react-paginate";
 import { axiosGet } from "../utils/helper";
 
