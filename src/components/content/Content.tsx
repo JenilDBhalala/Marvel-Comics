@@ -2,13 +2,16 @@ import md5 from "md5";
 import { useEffect, useState } from "react";
 import configData from "../../../config.json";
 import ReactPaginate from "react-paginate";
+import { axiosGet } from "../utils/helper";
 
-const Content = () => {
-  const publicKey = configData["PUBLIC_KEY"];
-  const privateKey = configData["PRIVATE_KEY"];
-  const baseURL = configData["BASE_URL"];
+interface ContentProps {
+  searchQuery: string;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Content = ({ searchQuery, setSearchQuery }: ContentProps) => {
   const [pageCount, setPageCount] = useState(0);
-  const [totalDataLength, setTotalDataLength] = useState(0)
+  const [totalDataLength, setTotalDataLength] = useState(0);
   const [charactersData, setCharactersData] = useState<any>([]);
 
   // Here we use item offsets; we could also use page offsets
@@ -17,47 +20,39 @@ const Content = () => {
   const itemsPerPage = 12;
   const createURL = () => {
     // Get the current timestamp
-    const ts = Date.now();
 
     // Create a new URLSearchParams object and set the necessary query parameters
-    const params = new URLSearchParams({
-      ts: ts.toString(),
-      apikey: publicKey,
-      hash: md5(ts.toString() + privateKey + publicKey), // Generate hash for authentication
+    let params: any = {
       limit: 12,
-      offset:itemOffset
-    } as any);
+      offset: itemOffset,
+    };
+    if (searchQuery) {
+      params.nameStartsWith = searchQuery;
+    }
 
-    // Construct the endpoint URL for searching comics with the query parameters
-    const endpoint = `${baseURL}/v1/public/characters?`;
-
-    // Combine the endpoint URL with the query parameters to form the complete API request URL
-    const url = endpoint + params;
-
-    return url;
+    return params;
+  };
+  const getData = async () => {
+    const url = createURL();
+    try {
+      const response:any = await axiosGet(url, "/v1/public/characters?");
+      setCharactersData(response?.data?.data?.results);
+      setTotalDataLength(response?.data?.data?.total);
+      setPageCount(Math.ceil(response?.data?.data?.total / itemsPerPage));
+    } catch (error: any) {
+      console.error(error?.message);
+    }
   };
 
   useEffect(() => {
-    const getData = async () => {
-      const url = createURL();
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        setCharactersData(data?.data?.results);
-        setTotalDataLength(data?.data?.total);
-        setPageCount(Math.ceil(data?.data?.total / itemsPerPage));
-      } catch (error: any) {
-        console.log(error?.message);
-      }
-    };
-    getData();
-  }, [itemOffset]);
-
+    const fetchData = setTimeout(() => {
+      getData();
+    }, 1000);
+    return () => clearTimeout(fetchData);
+  }, [itemOffset, searchQuery]);
 
   // Invoke when user click to request another page.
   const handlePageClick = (event: any) => {
-    console.log("event", event);
-    console.log('totalDataLength', totalDataLength)
     const newOffset = (event.selected * itemsPerPage) % totalDataLength;
     setItemOffset(newOffset);
   };
@@ -65,11 +60,11 @@ const Content = () => {
   return (
     <>
       <div className="flex flex-wrap justify-around gap-y-5">
-        {charactersData.map((characterData: any) => (
+        {charactersData?.map((characterData: any) => (
           <div key={characterData?.id} className="card w-80 glass">
             <figure>
               <img
-                className="w-screen"
+                className="w-screen h-full"
                 src={
                   characterData.thumbnail?.path +
                   "/standard_fantastic." +

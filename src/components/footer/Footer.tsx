@@ -8,7 +8,7 @@ const Footer = () => {
       <p className="font-bold">
         Marvel Comics <br/>Empowering imaginations since 1939
       </p> 
-      <p>Copyright © 2024 - All right reserved</p>
+      <p>Copyright © {new Date()?.getFullYear()} - All right reserved</p>
     </aside> 
   </footer>
   )
