@@ -93,7 +93,7 @@ const Content = ({ searchQuery, setSearchQuery }: ContentProps) => {
         pageCount={pageCount}
         previousLabel="< previous"
         renderOnZeroPageCount={null}
-        containerClassName="flex flex-wrap justify-center space-x-2 mt-4"
+        containerClassName="flex flex-wrap justify-center space-x-2 my-6"
         activeClassName={"px-3 py-2 rounded-full bg-gray-400 text-black "}
         previousClassName="px-3 py-2 rounded-full bg-gray-200 text-gray-700"
         nextClassName="px-3 py-2 rounded-full bg-gray-200 text-gray-700"
