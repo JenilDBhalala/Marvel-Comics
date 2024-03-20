@@ -6,6 +6,30 @@ const publicKey = import.meta.env.VITE_PUBLIC_KEY;
 const privateKey = import.meta.env.VITE_PRIVATE_KEY;
 const baseURL = import.meta.env.VITE_BASE_URL;
 
+const createURL = (limit?:number,offset:number = 0,searchQuery:string='') => {
+  // Get the current timestamp
+
+  // Create a new URLSearchParams object and set the necessary query parameters
+  let params: any = {
+    limit: limit,
+    offset: offset,
+  };
+  if (searchQuery) {
+    params.nameStartsWith = searchQuery;
+  }
+
+  return params;
+};
+
+// const getData = async () => {
+//   const url = createURL();
+//   try {
+//     // const response: any = await axiosGet(url, "/v1/public/characters?");
+//   } catch (error: any) {
+//     console.error(error?.message);
+//   }
+// };
+
 const axiosGet = (reqUrl: any, endUrl?: string, reqBody?: any) => {
   const ts = Date.now();
 

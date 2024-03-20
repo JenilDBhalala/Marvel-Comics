@@ -1,5 +1,5 @@
 import Header from "./components/header/Header";
-import Content from "./components/content/Content";
+import ComicCharacterList from "./components/ComicCharacterList/ComicCharacterList";
 import Footer from "./components/footer/Footer";
 import { useState } from "react";
 
@@ -8,11 +8,9 @@ function App() {
 
   return (
     <>
-      <div>
         <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <Content searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <ComicCharacterList searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
         <Footer />
-      </div>
     </>
   );
 }
