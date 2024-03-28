@@ -24,7 +24,7 @@ const Header = ({ searchQuery, setSearchQuery }: HeaderProps) => {
           <input
             type="text"
             placeholder="Search"
-            className="input input-bordered w-24 md:w-auto"
+            className="input input-bordered w-24 md:w-auto bg-white"
             value={searchQuery}
             onChange={handleSearch} // Trigger search on each keystroke
           />
