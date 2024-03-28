@@ -4,7 +4,7 @@ interface CharacterCardProps {
 
 const CharacterCard = ({ characterData }: CharacterCardProps) => {
   return (
-    <div className="card w-80 glass">
+    <div className="card w-80 glass hover:scale-105 transform transition duration-300 ease-in-out hover:shadow-lg">
       <figure>
         <img
           className="w-screen h-full"
