@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import supabaseConnection from "../../db/supabaseDB";
-import CharacterCard from "./CharacterCard";
+import CharacterCard from "./CharacterCard/CharacterCard";
 
 interface ContentProps {
   searchQuery: string;
@@ -16,7 +16,7 @@ const Content = ({ searchQuery, setSearchQuery }: ContentProps) => {
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 12;
+  const itemsPerPage = 15;
 
   useEffect(() => {
     const fetchData = setTimeout(() => {
@@ -55,7 +55,7 @@ const Content = ({ searchQuery, setSearchQuery }: ContentProps) => {
 
   return (
     <>
-      <div className="flex flex-wrap justify-around gap-y-5">
+      <div className="flex flex-wrap justify-evenly gap-y-5 mx-3.5">
         {charactersData?.map((characterData: any) => (
           <CharacterCard
             key={characterData?.id}

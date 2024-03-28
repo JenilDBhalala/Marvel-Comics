@@ -7,11 +7,14 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <>
-        <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <ComicCharacterList searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-        <Footer />
-    </>
+    <div className="bg-slate-100">
+      <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <ComicCharacterList
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+      />
+      <Footer />
+    </div>
   );
 }
 

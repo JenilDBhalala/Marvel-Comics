@@ -11,8 +11,8 @@ const Header = ({ searchQuery, setSearchQuery }: HeaderProps) => {
   };
 
   return (
-    <div className="navbar bg-base-100 sticky top-0 z-50 mb-10">
-      <div className="flex-1 w-10">
+    <div className="navbar bg-slate-50 sticky top-0 z-50 mb-10">
+      <div className="flex-1 w-10 ml-4">
         <img
           src={marvelComicsLogo}
           alt="Marvel comic Logo"
