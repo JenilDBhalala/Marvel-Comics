@@ -6,10 +6,10 @@ import CharacterCardSkeleton from "./CharacterCard/CharacterCardSkeleton";
 
 interface ContentProps {
   searchQuery: string;
-  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+  characterListSearchQuery: string;
 }
 
-const Content = ({ searchQuery, setSearchQuery }: ContentProps) => {
+const Content = ({ searchQuery, characterListSearchQuery }: ContentProps) => {
   const [pageCount, setPageCount] = useState(0);
   const [totalDataLength, setTotalDataLength] = useState(0);
   const [charactersData, setCharactersData] = useState<IComicCharacter[]>([]);
@@ -21,12 +21,18 @@ const Content = ({ searchQuery, setSearchQuery }: ContentProps) => {
   //  used to prevent extra api call. itemOffset is already calling getCharacterList so prevent from searchQuery useEffect
   const firstAPICall = useRef(true);
 
+  // store searchQuery in local storage
+  const saveSearchQuery = () => {
+    localStorage.setItem(characterListSearchQuery, searchQuery);
+  };
+
   useEffect(() => {
     getCharacterList();
   }, [itemOffset]);
 
   useEffect(() => {
     if (!firstAPICall.current) {
+      saveSearchQuery();
       setItemOffset(0);
       const fetchData = setTimeout(() => {
         getCharacterList(0);

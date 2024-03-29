@@ -4,14 +4,21 @@ import Footer from "./components/footer/Footer";
 import { useState } from "react";
 
 function App() {
-  const [searchQuery, setSearchQuery] = useState("");
+  const characterListSearchQuery = "characterListSearchQuery";
+  
+  // get searchQuery from local storage
+  const getSearchQuery = (): string => {
+    return localStorage.getItem(characterListSearchQuery) || "";
+  };
+
+  const [searchQuery, setSearchQuery] = useState(getSearchQuery());
 
   return (
     <div className="bg-slate-100">
       <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <ComicCharacterList
         searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
+        characterListSearchQuery={characterListSearchQuery}
       />
       <Footer />
     </div>
