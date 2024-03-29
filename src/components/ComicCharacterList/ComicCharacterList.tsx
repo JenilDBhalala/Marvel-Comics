@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactPaginate from "react-paginate";
 import supabaseConnection from "../../db/supabaseDB";
 import CharacterCard from "./CharacterCard/CharacterCard";
@@ -18,16 +18,28 @@ const Content = ({ searchQuery, setSearchQuery }: ContentProps) => {
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 15;
+  //  used to prevent extra api call. itemOffset is already calling getCharacterList so prevent from searchQuery useEffect
+  const firstAPICall = useRef(true);
 
   useEffect(() => {
-    const fetchData = setTimeout(() => {
-      getCharacterList();
-    }, 1000);
-    return () => clearTimeout(fetchData);
-  }, [itemOffset, searchQuery]);
+    getCharacterList();
+  }, [itemOffset]);
 
-  const getCharacterList = async () => {
+  useEffect(() => {
+    if (!firstAPICall.current) {
+      setItemOffset(0);
+      const fetchData = setTimeout(() => {
+        getCharacterList(0);
+      }, 1000);
+      return () => clearTimeout(fetchData);
+    }
+    firstAPICall.current = false;
+  }, [searchQuery]);
+
+  const getCharacterList = async (initialItemOffset?: number) => {
     try {
+      // if anyone changed search query then initialItemOffset will come as 0. else it will be null or undefined.
+      let finalItemOffset = initialItemOffset || itemOffset;
       setLoading(true);
       const {
         data: characterList,
@@ -37,14 +49,14 @@ const Content = ({ searchQuery, setSearchQuery }: ContentProps) => {
       } = await supabaseConnection
         .from("CharacterList")
         .select("*", { count: "exact" })
-        .range(itemOffset, itemOffset + itemsPerPage - 1)
+        .range(finalItemOffset, finalItemOffset + itemsPerPage - 1)
         .ilike("name", `%${searchQuery}%`);
       if ([200, 206].includes(status)) {
-        setLoading(false);
         setCharactersData(characterList as IComicCharacter[]);
         setTotalDataLength(count as number);
         setPageCount(Math.ceil((count as number) / itemsPerPage));
       }
+      setLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -59,18 +71,16 @@ const Content = ({ searchQuery, setSearchQuery }: ContentProps) => {
   return (
     <>
       <div className="flex flex-wrap justify-evenly gap-y-5 mx-3.5">
-        {loading ? (
-           Array.from({ length: itemsPerPage }).map((_, index) => (
-            <CharacterCardSkeleton key={index} />
-          ))
-        ) : (
-          charactersData?.map((characterData: any) => (
-            <CharacterCard
-              key={characterData?.id}
-              characterData={characterData}
-            />
-          ))
-        )}
+        {loading
+          ? Array.from({ length: itemsPerPage }).map((_, index) => (
+              <CharacterCardSkeleton key={index} />
+            ))
+          : charactersData?.map((characterData: any) => (
+              <CharacterCard
+                key={characterData?.id}
+                characterData={characterData}
+              />
+            ))}
       </div>
       <ReactPaginate
         breakLabel="..."

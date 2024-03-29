@@ -2,9 +2,9 @@ import "./CharacterCard.scss";
 
 const CharacterCardSkeleton = () => {
   return (
-    <div className="animate-pulse shadow  border-solid border-slate-400 border card mx-8 md:mx-0 md:w-56 glass hover:scale-105 transform transition duration-300 ease-in-out hover:shadow-lg">
+    <div className="animate-pulse shadow w-full  border-solid border-slate-400 border card mx-8 md:mx-0 md:w-56 glass hover:scale-105 transform transition duration-300 ease-in-out hover:shadow-lg">
       <figure>
-        <div className="flex items-center justify-center h-[222px] w-full mb-4 bg-gray-300 rounded dark:bg-gray-700">
+        <div className="flex items-center justify-center  h-[281px] md:h-[222px] w-full mb-4 bg-gray-300 rounded dark:bg-gray-700">
           <svg
             className="w-10 h-10 text-gray-200 dark:text-gray-600"
             aria-hidden="true"
