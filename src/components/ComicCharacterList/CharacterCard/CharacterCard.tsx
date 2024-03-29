@@ -8,7 +8,7 @@ const CharacterCard = ({ characterData }: CharacterCardProps) => {
     <div className="border-solid border-slate-400 border card mx-8 md:mx-0 md:w-56 glass hover:scale-105 transform transition duration-300 ease-in-out hover:shadow-lg">
       <figure>
         <img
-          className="w-screen h-full"
+          className="w-screen h-[222px]"
           src={
             characterData?.thumbnail?.path +
             "/standard_fantastic." +
