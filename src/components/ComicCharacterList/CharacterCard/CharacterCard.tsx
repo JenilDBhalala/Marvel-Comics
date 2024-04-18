@@ -18,7 +18,7 @@ const CharacterCard = ({ characterData }: CharacterCardProps) => {
         />
       </figure>
       <div className="card-body pb-4">
-        <h2 className="card-title">{characterData?.name}</h2>
+        <h2 className="card-title line-clamp-2">{characterData?.name}</h2>
         <p className=" whitespace-normal line-clamp-2 h-12">
           {characterData?.description}
         </p>
