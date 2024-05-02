@@ -1,33 +1,37 @@
 import { useEffect, useRef, useState } from "react";
 import ReactPaginate from "react-paginate";
 import supabaseConnection from "../../db/supabaseDB";
-import CharacterCard from "./CharacterCard/CharacterCard";
-import CharacterCardSkeleton from "./CharacterCard/CharacterCardSkeleton";
+import { IMovie } from "../utils/CommonInterfaces/movieList";
+import MovieCard from "./MovieCard/MovieCard";
+import MovieCardSkeleton from "./MovieCard/MovieCardSkeleton";
+import { CommonConstants } from "../utils/CommonConstants";
 
-interface ContentProps {
+interface MovieListProps {
   searchQuery: string;
-  characterListSearchQuery: string;
+  movieListSearchQuery: string;
 }
 
-const Content = ({ searchQuery, characterListSearchQuery }: ContentProps) => {
+const MovieList = ({ searchQuery, movieListSearchQuery }: MovieListProps) => {
+  const moviesSearchOnColumn: string = "title";
+  const movieListTable: string = "Movie_list";
   const [pageCount, setPageCount] = useState(0);
   const [totalDataLength, setTotalDataLength] = useState(0);
-  const [charactersData, setCharactersData] = useState<IComicCharacter[]>([]);
+  const [movieList, setMovieList] = useState<IMovie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 15;
-  //  used to prevent extra api call. itemOffset is already calling getCharacterList so prevent from searchQuery useEffect
+  //  used to prevent extra api call. itemOffset is already calling getMovieList so prevent from searchQuery useEffect
   const firstAPICall = useRef(true);
 
   // store searchQuery in local storage
   const saveSearchQuery = () => {
-    localStorage.setItem(characterListSearchQuery, searchQuery);
+    localStorage.setItem(movieListSearchQuery, searchQuery);
   };
 
   useEffect(() => {
-    getCharacterList();
+    getMovieList();
   }, [itemOffset]);
 
   useEffect(() => {
@@ -35,30 +39,30 @@ const Content = ({ searchQuery, characterListSearchQuery }: ContentProps) => {
       saveSearchQuery();
       setItemOffset(0);
       const fetchData = setTimeout(() => {
-        getCharacterList(0);
+        getMovieList(0);
       }, 1000);
       return () => clearTimeout(fetchData);
     }
     firstAPICall.current = false;
   }, [searchQuery]);
 
-  const getCharacterList = async (initialItemOffset?: number) => {
+  const getMovieList = async (initialItemOffset?: number) => {
     try {
       // if anyone changed search query then initialItemOffset will come as 0. else it will be null or undefined.
       let finalItemOffset = initialItemOffset || itemOffset;
       setLoading(true);
       const {
-        data: characterList,
+        data: movieList,
         status,
         count,
         error,
       } = await supabaseConnection
-        .from("CharacterList")
+        .from(movieListTable)
         .select("*", { count: "exact" })
         .range(finalItemOffset, finalItemOffset + itemsPerPage - 1)
-        .ilike("name", `%${searchQuery}%`);
-      if ([200, 206].includes(status)) {
-        setCharactersData(characterList as IComicCharacter[]);
+        .ilike(moviesSearchOnColumn, `%${searchQuery}%`);
+      if ([CommonConstants?.API_RESPONSE_SUCCESSFUL, CommonConstants?.API_RESPONSE_PARTIAL_RESPONSE].includes(status)) {
+        setMovieList(movieList as IMovie[]);
         setTotalDataLength(count as number);
         setPageCount(Math.ceil((count as number) / itemsPerPage));
       }
@@ -79,13 +83,10 @@ const Content = ({ searchQuery, characterListSearchQuery }: ContentProps) => {
       <div className="flex flex-wrap justify-evenly gap-y-5 mx-3.5">
         {loading
           ? Array.from({ length: itemsPerPage }).map((_, index) => (
-              <CharacterCardSkeleton key={index} />
+              <MovieCardSkeleton key={index} />
             ))
-          : charactersData?.map((characterData: any) => (
-              <CharacterCard
-                key={characterData?.id}
-                characterData={characterData}
-              />
+          : movieList?.map((movie: any) => (
+              <MovieCard key={movie?.id} movie={movie} />
             ))}
       </div>
       <ReactPaginate
@@ -106,4 +107,4 @@ const Content = ({ searchQuery, characterListSearchQuery }: ContentProps) => {
   );
 };
 
-export default Content;
+export default MovieList;

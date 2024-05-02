@@ -1,14 +1,14 @@
-import Header from "./components/header/Header";
-import ComicCharacterList from "./components/ComicCharacterList/ComicCharacterList";
-import Footer from "./components/footer/Footer";
 import { useState } from "react";
+import MovieList from "./components/MovieList/MovieList.tsx";
+import Footer from "./components/footer/Footer.tsx";
+import Header from "./components/header/Header.tsx";
 
 function App() {
-  const characterListSearchQuery = "characterListSearchQuery";
-  
+  const movieListSearchQuery = "movieListSearchQuery";
+
   // get searchQuery from local storage
   const getSearchQuery = (): string => {
-    return localStorage.getItem(characterListSearchQuery) || "";
+    return localStorage.getItem(movieListSearchQuery) || "";
   };
 
   const [searchQuery, setSearchQuery] = useState(getSearchQuery());
@@ -16,9 +16,9 @@ function App() {
   return (
     <div className="bg-slate-100">
       <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <ComicCharacterList
+      <MovieList
         searchQuery={searchQuery}
-        characterListSearchQuery={characterListSearchQuery}
+        movieListSearchQuery={movieListSearchQuery}
       />
       <Footer />
     </div>

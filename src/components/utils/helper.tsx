@@ -24,7 +24,7 @@ const createURL = (limit?:number,offset:number = 0,searchQuery:string='') => {
 // const getData = async () => {
 //   const url = createURL();
 //   try {
-//     // const response: any = await axiosGet(url, "/v1/public/characters?");
+//     // const response: any = await axiosGet(url, "/v1/public/movies?");
 //   } catch (error: any) {
 //     console.error(error?.message);
 //   }
