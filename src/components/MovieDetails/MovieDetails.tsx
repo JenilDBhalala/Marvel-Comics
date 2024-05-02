@@ -1,13 +1,15 @@
 const MovieDetails = () => {
   return (
-    <div className="min-h-screen w-full bg-gray-900 text-white">
-      <div className="relative h-[60vh] w-full overflow-hidden">
-        <img
-          alt="Movie Backdrop"
-          className="h-full w-full object-cover object-top"
-          src="https://image.tmdb.org/t/p/w500/9X7YweCJw3q8Mcf6GadxReFEksM.jpg"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent" />
+    <div className="min-h-screen w-full bg-zinc-200 text-black dark:bg-gray-900 dark:text-white">
+      <div className="relative h-[65vh] w-full overflow-hidden">
+        <div>
+            <img
+              alt="Movie Backdrop"
+              className="h-full w-full object-cover object-top"
+              src="https://image.tmdb.org/t/p/w500/kGWpZewzInbzTuaIHcy0bFgzXuM.jpg"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-200 to-transparent dark:from-gray-900" />
+        </div>
       </div>
       <div className="container mx-auto py-12 px-4 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-[300px_1fr] lg:grid-cols-[400px_1fr]">
@@ -16,7 +18,7 @@ const MovieDetails = () => {
               alt="Movie Poster"
               className="h-auto w-full rounded-lg shadow-lg"
               height={450}
-              src="https://image.tmdb.org/t/p/w500/fnbjcRDYn6YviCcePDnGdyAkYsB.jpg"
+              src="https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg"
               style={{
                 aspectRatio: "300/450",
                 objectFit: "cover",
@@ -106,7 +108,7 @@ const MovieDetails = () => {
           <div className="space-y-6">
             <div>
               <h1 className="text-4xl font-bold">Dune</h1>
-              <p className="mt-2 text-lg text-gray-400">
+              <p className="mt-2 text-lg text-gray-900 dark:text-gray-400">
                 A mythic and emotionally charged hero's journey, "Dune" tells
                 the story of Paul Atreides, a brilliant and gifted young man
                 born into a great destiny beyond his understanding, who must
@@ -116,33 +118,33 @@ const MovieDetails = () => {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <div className="text-gray-400">Release Year</div>
+                <div className="text-gray-900 dark:text-gray-400">Release Year</div>
                 <div className="text-lg font-medium">2021</div>
               </div>
               <div>
-                <div className="text-gray-400">Runtime</div>
+                <div className="text-gray-900 dark:text-gray-400">Runtime</div>
                 <div className="text-lg font-medium">155 minutes</div>
               </div>
               <div>
-                <div className="text-gray-400">Budget</div>
+                <div className="text-gray-900 dark:text-gray-400">Budget</div>
                 <div className="text-lg font-medium">$165,000,000</div>
               </div>
               <div>
-                <div className="text-gray-400">Revenues</div>
+                <div className="text-gray-900 dark:text-gray-400">Revenues</div>
                 <div className="text-lg font-medium">$400,000,000</div>
               </div>
              
               <div>
-                <div className="text-gray-400">Status</div>
+                <div className="text-gray-900 dark:text-gray-400">Status</div>
                 <div className="text-lg font-medium">Released</div>
               </div>
               <div>
-                <div className="text-gray-400">IMDB</div>
+                <div className="text-gray-900 dark:text-gray-400">IMDB</div>
                 <div className="text-lg font-medium">8.2</div>
               </div>
             </div>
               <div>
-                <div className="text-gray-400">Genres</div>
+                <div className="text-gray-900 dark:text-gray-400">Genres</div>
                 <ul className="space-x-3 flex">
                   <li>Science Fiction</li>
                   <li>Action</li>
@@ -150,7 +152,7 @@ const MovieDetails = () => {
                 </ul>
               </div>
             <div>
-              <div className="text-gray-400">Tagline</div>
+              <div className="text-gray-900 dark:text-gray-400">Tagline</div>
               <div className="text-lg font-medium">
                 "A mythic and emotionally charged hero's journey."
               </div>
