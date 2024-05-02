@@ -2,6 +2,7 @@ import { useState } from "react";
 import MovieList from "./components/MovieList/MovieList.tsx";
 import Footer from "./components/footer/Footer.tsx";
 import Header from "./components/header/Header.tsx";
+import './App.css'
 
 function App() {
   const movieListSearchQuery = "movieListSearchQuery";
@@ -14,7 +15,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState(getSearchQuery());
 
   return (
-    <div className="bg-slate-100">
+    <div className="bg-slate-100 h-screen no-scrollbar">
       <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <MovieList
         searchQuery={searchQuery}
