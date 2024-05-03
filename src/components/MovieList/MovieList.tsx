@@ -61,7 +61,12 @@ const MovieList = ({ searchQuery, movieListSearchQuery }: MovieListProps) => {
         .select("*", { count: "exact" })
         .range(finalItemOffset, finalItemOffset + itemsPerPage - 1)
         .ilike(moviesSearchOnColumn, `%${searchQuery}%`);
-      if ([CommonConstants?.API_RESPONSE_SUCCESSFUL, CommonConstants?.API_RESPONSE_PARTIAL_RESPONSE].includes(status)) {
+      if (
+        [
+          CommonConstants?.API_RESPONSE_SUCCESSFUL,
+          CommonConstants?.API_RESPONSE_PARTIAL_RESPONSE,
+        ].includes(status)
+      ) {
         setMovieList(movieList as IMovie[]);
         setTotalDataLength(count as number);
         setPageCount(Math.ceil((count as number) / itemsPerPage));

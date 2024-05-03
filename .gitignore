@@ -28,3 +28,6 @@ config.json
 
 # Env Files
 .env
+
+# Backup data
+DataBackup
