@@ -3,6 +3,8 @@ import MovieList from "./components/MovieList/MovieList.tsx";
 import Footer from "./components/footer/Footer.tsx";
 import Header from "./components/header/Header.tsx";
 import './App.css'
+import MovieDetailsSkeleton from "./components/MovieDetails/MovieDetailsSkeletons/MovieDetailsSkeleton.tsx";
+import MovieDetails from "./components/MovieDetails/MovieDetails.tsx";
 
 function App() {
   const movieListSearchQuery = "movieListSearchQuery";
@@ -17,10 +19,12 @@ function App() {
   return (
     <div className="bg-slate-100 h-screen no-scrollbar">
       <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <MovieList
+      {/* <MovieList
         searchQuery={searchQuery}
         movieListSearchQuery={movieListSearchQuery}
-      />
+      /> */}
+      {/* <MovieDetails/> */}
+      <MovieDetailsSkeleton/>
       <Footer />
     </div>
   );
