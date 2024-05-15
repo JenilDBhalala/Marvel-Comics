@@ -1,11 +1,20 @@
 import { IMovie } from "../../utils/CommonInterfaces/movieList";
 import "./MovieCard.scss";
+import { useNavigate } from "react-router-dom";
+
+
 interface MovieCardProps {
   movie: IMovie;
 }
 
 const MovieCard = ({ movie }: MovieCardProps) => {
   const movieImageBaseURL = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL;
+  const navigate = useNavigate();
+
+  const displayMovieDetails = () => {
+    navigate(`/movie-details/${movie?.id}`);
+  }
+
   return (
     <div className="border-solid border-slate-400 border card mx-8 md:mx-0 md:w-56 glass hover:scale-105 transform transition duration-300 ease-in-out hover:shadow-lg">
       <figure>
@@ -38,7 +47,9 @@ const MovieCard = ({ movie }: MovieCardProps) => {
         </p>
       </div>
       <div className="card-actions w-full justify-end p-4">
-        <button className="btn min-h-0 h-10 text-[#1e293b] bg-indigo-100 hover:bg-indigo-200 border-[#e5e7eb]">
+        <button className="btn min-h-0 h-10 text-[#1e293b] bg-indigo-100 hover:bg-indigo-200 border-[#e5e7eb]"
+          onClick={displayMovieDetails}
+        >
           View
         </button>
       </div>

@@ -1,10 +1,10 @@
 import { useState } from "react";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import "./App.css";
+import MovieDetails from "./components/MovieDetails/MovieDetails.tsx";
 import MovieList from "./components/MovieList/MovieList.tsx";
 import Footer from "./components/footer/Footer.tsx";
 import Header from "./components/header/Header.tsx";
-import './App.css'
-import MovieDetailsSkeleton from "./components/MovieDetails/MovieDetailsSkeletons/MovieDetailsSkeleton.tsx";
-import MovieDetails from "./components/MovieDetails/MovieDetails.tsx";
 
 function App() {
   const movieListSearchQuery = "movieListSearchQuery";
@@ -17,16 +17,34 @@ function App() {
   const [searchQuery, setSearchQuery] = useState(getSearchQuery());
 
   return (
-    <div className="bg-slate-100 h-screen no-scrollbar">
-      <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      {/* <MovieList
-        searchQuery={searchQuery}
-        movieListSearchQuery={movieListSearchQuery}
-      /> */}
-      {/* <MovieDetails/> */}
-      <MovieDetailsSkeleton/>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Header
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+              />
+              <Outlet />
+              <Footer />
+            </>
+          }
+        >
+          <Route
+            index
+            element={
+              <MovieList
+                searchQuery={searchQuery}
+                movieListSearchQuery={movieListSearchQuery}
+              />
+            }
+          />
+          <Route path="movie-details/:movieId" element={<MovieDetails />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

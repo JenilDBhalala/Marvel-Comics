@@ -5,6 +5,7 @@ import { IMovie } from "../utils/CommonInterfaces/movieList";
 import MovieCard from "./MovieCard/MovieCard";
 import MovieCardSkeleton from "./MovieCard/MovieCardSkeleton";
 import { CommonConstants } from "../utils/CommonConstants";
+import { ETable } from "../../db/tables";
 
 interface MovieListProps {
   searchQuery: string;
@@ -13,7 +14,6 @@ interface MovieListProps {
 
 const MovieList = ({ searchQuery, movieListSearchQuery }: MovieListProps) => {
   const moviesSearchOnColumn: string = "title";
-  const movieListTable: string = "Movie_list";
   const [pageCount, setPageCount] = useState(0);
   const [totalDataLength, setTotalDataLength] = useState(0);
   const [movieList, setMovieList] = useState<IMovie[]>([]);
@@ -57,7 +57,7 @@ const MovieList = ({ searchQuery, movieListSearchQuery }: MovieListProps) => {
         count,
         error,
       } = await supabaseConnection
-        .from(movieListTable)
+        .from(ETable?.MovieList)
         .select("*", { count: "exact" })
         .range(finalItemOffset, finalItemOffset + itemsPerPage - 1)
         .ilike(moviesSearchOnColumn, `%${searchQuery}%`);

@@ -1,6 +1,6 @@
 const CastSkeleton = () => {
   return (
-    <div className="flex flex-col items-start">
+    <div className="flex flex-col items-center">
       <CastImageSkeleton />
       <div className="mt-2">
         <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-20 mb-2"></div>
