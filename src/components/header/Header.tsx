@@ -1,3 +1,4 @@
+import { useLocation } from "react-router";
 import marvelComicsLogo from "../../../public/Marvel Comics.png";
 
 interface HeaderProps {
@@ -6,6 +7,9 @@ interface HeaderProps {
 }
 
 const Header = ({ searchQuery, setSearchQuery }: HeaderProps) => {
+  const location = useLocation();
+  const currentPath = location?.pathname;
+
   const handleSearch = (e: any) => {
     setSearchQuery(e?.target?.value);
   };
@@ -20,15 +24,17 @@ const Header = ({ searchQuery, setSearchQuery }: HeaderProps) => {
         />
       </div>
       <div className="flex-none gap-2">
-        <div className="form-control">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered w-24 md:w-auto bg-white"
-            value={searchQuery}
-            onChange={handleSearch} // Trigger search on each keystroke
-          />
-        </div>
+        {currentPath === "/" && (
+          <div className="form-control">
+            <input
+              type="text"
+              placeholder="Search"
+              className="input input-bordered w-24 md:w-auto bg-white"
+              value={searchQuery}
+              onChange={handleSearch}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
