@@ -1,11 +1,11 @@
-import { ICast } from "../utils/CommonInterfaces/movieDetails";
-import { CastImageSkeleton } from "./MovieDetailsSkeletons/CastSkeleton";
+import { ICast } from "../../utils/CommonInterfaces/movieDetails";
+import { CastImageSkeleton } from "../MovieDetailsSkeletons/CastSkeleton";
 
-interface MovieCastProps {
+interface CastMemberProps {
   cast_member: ICast;
 }
 
-export const MovieCast = ({ cast_member }: MovieCastProps) => {
+export const CastMember = ({ cast_member }: CastMemberProps) => {
   const movieImageBaseURL = import.meta.env.VITE_MOVIE_IMAGE_BASE_URL;
 
   return (
@@ -25,7 +25,7 @@ export const MovieCast = ({ cast_member }: MovieCastProps) => {
       ) : (
         <CastImageSkeleton />
       )}
-      <div className="mt-2 text-sm font-medium">{cast_member?.name}</div>
+      <div className="mt-2 text-sm font-medium text-center">{cast_member?.name}</div>
     </div>
   );
 };

@@ -8,10 +8,10 @@ import {
   IGenre,
   IMovieDetails,
 } from "../utils/CommonInterfaces/movieDetails";
-import { MovieCast } from "./MovieCast";
 import MovieDetailBackdropSkeleton from "./MovieDetailsSkeletons/MovieDetailBackdropSkeleton";
 import MovieDetailPosterSkeleton from "./MovieDetailsSkeletons/MovieDetailPosterSkeleton";
 import MovieDetailsSkeleton from "./MovieDetailsSkeletons/MovieDetailsSkeleton";
+import { MovieCast } from "./MovieCast/MovieCast";
 
 const MovieDetails = () => {
   const movieOriginalSizeImageBaseURL = import.meta.env
@@ -185,14 +185,7 @@ const MovieDetails = () => {
             </div>
             <div className="mt-4">
               <h2 className="text-lg font-bold">Cast</h2>
-              <div className="grid grid-cols-4 md:grid-cols-8 gap-2.5 items-start">
-                {movieDetails?.credits?.cast?.map((cast_member) => (
-                  <MovieCast
-                    key={cast_member?.cast_id}
-                    cast_member={cast_member}
-                  />
-                ))}
-              </div>
+              <MovieCast cast={movieDetails?.credits?.cast as ICast[]} />
             </div>
           </div>
         </div>

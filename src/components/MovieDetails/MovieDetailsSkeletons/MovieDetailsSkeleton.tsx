@@ -68,7 +68,7 @@ const MovieDetailsSkeleton = () => {
           <h2 className="text-lg font-bold">Cast</h2>
           <div className="grid grid-cols-4 md:grid-cols-8 gap-2.5 items-start">
             {[...Array(castSkeletonCount)].map((_, index) => (
-              <CastSkeleton />
+              <CastSkeleton key={index} />
             ))}
           </div>
         </div>
