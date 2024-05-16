@@ -8,6 +8,7 @@ import Header from "./components/header/Header.tsx";
 
 function App() {
   const movieListSearchQuery = "movieListSearchQuery";
+  const basename = import.meta.env.VITE_PUBLIC_URL || '/';
 
   // get searchQuery from local storage
   const getSearchQuery = (): string => {
@@ -17,7 +18,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState(getSearchQuery());
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={`${basename}`}>
       <Routes>
         <Route
           path="/"
