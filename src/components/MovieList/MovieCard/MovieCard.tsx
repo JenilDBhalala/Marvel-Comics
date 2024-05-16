@@ -1,7 +1,5 @@
 import { IMovie } from "../../utils/CommonInterfaces/movieList";
-import "./MovieCard.scss";
 import { useNavigate } from "react-router-dom";
-
 
 interface MovieCardProps {
   movie: IMovie;
@@ -27,7 +25,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
           />
         ) : (
           // dummy image logo
-          <div className="flex items-center justify-center  h-[410px] md:h-[333px] w-full mb-4 bg-gray-300 rounded dark:bg-gray-700">
+          <div className="flex items-center justify-center h-[410px] md:h-[333px] w-full bg-gray-300 rounded dark:bg-gray-700">
             <svg
               className="w-10 h-10 text-gray-200 dark:text-gray-600"
               aria-hidden="true"
@@ -40,9 +38,9 @@ const MovieCard = ({ movie }: MovieCardProps) => {
           </div>
         )}
       </figure>
-      <div className="card-body pb-4">
-        <h2 className="card-title line-clamp-2">{movie?.title}</h2>
-        <p className=" whitespace-normal line-clamp-2 h-12">
+      <div className="card-body grow-0 pb-4">
+        <h2 className="card-title line-clamp-2 h-[56px] flex align-center ">{movie?.title}</h2>
+        <p className="whitespace-normal line-clamp-2 h-12">
           {movie?.overview}
         </p>
       </div>

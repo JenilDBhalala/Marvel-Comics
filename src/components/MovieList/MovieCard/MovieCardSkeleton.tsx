@@ -1,5 +1,3 @@
-import "./MovieCard.scss";
-
 const MovieCardSkeleton = () => {
   return (
     <div className="animate-pulse shadow w-full  border-solid border-slate-400 border card mx-8 md:mx-0 md:w-56 glass hover:scale-105 transform transition duration-300 ease-in-out hover:shadow-lg">

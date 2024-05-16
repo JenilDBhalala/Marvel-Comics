@@ -23,7 +23,7 @@ export const MovieCast = ({ cast }: MovieCastProps) => {
         <CastMember key={cast_member?.id} cast_member={cast_member} />
       ))}
       {/* Display "Down" icon when not expanded */}
-      {!expanded && (
+      {!expanded && remainingCast?.length > 0 && (
         <div
           className="flex items-center justify-center cursor-pointer"
           onClick={toggleExpand}

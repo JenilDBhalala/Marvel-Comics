@@ -73,7 +73,7 @@ const MovieDetails = () => {
       {loading ? (
         <MovieDetailsSkeleton />
       ) : (
-        <div className="min-h-screen w-full bg-zinc-200 text-black dark:bg-gray-900 dark:text-white">
+        <div className="min-h-screen w-full bg-zinc-200 text-black dark:bg-[#1D232A] dark:text-white">
           <div className="relative h-[65vh] w-full overflow-hidden">
             {movieDetails?.backdrop_path ? (
               <img
@@ -84,7 +84,7 @@ const MovieDetails = () => {
             ) : (
               <MovieDetailBackdropSkeleton />
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-200 to-transparent dark:from-gray-900" />
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-200 to-transparent dark:from-[#1D232A]" />
           </div>
           <div className="container mx-auto py-12 px-4 md:px-6 lg:px-8">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-[300px_1fr] lg:grid-cols-[400px_1fr]">
