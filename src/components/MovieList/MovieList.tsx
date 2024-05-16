@@ -85,7 +85,7 @@ const MovieList = ({ searchQuery, movieListSearchQuery }: MovieListProps) => {
 
   return (
     <>
-      <div className="flex flex-wrap justify-evenly gap-y-5 mx-3.5 mt-10">
+      <div className="flex flex-wrap justify-evenly gap-y-5 mx-3.5 mt-10 ">
         {loading
           ? Array.from({ length: itemsPerPage }).map((_, index) => (
               <MovieCardSkeleton key={index} />
