@@ -15,21 +15,21 @@ const Header = ({ searchQuery, setSearchQuery }: HeaderProps) => {
   };
 
   return (
-    <div className="navbar bg-slate-50 sticky top-0 z-50">
+    <div className="navbar bg-slate-50 sticky top-0 z-50 dark:bg-[#161b22]">
       <div className="flex-1 w-10 ml-4">
         <img
           src={marvelComicsLogo}
           alt="Marvel comic Logo"
-          className="h-20 w-24"
+          className="h-16 w-20"
         />
       </div>
-      <div className="flex-none gap-2">
+      <div className="flex-none pe-4 ">
         {currentPath === "/" && (
-          <div className="form-control">
+          <div className="form-control h-10 ">
             <input
               type="text"
-              placeholder="Search"
-              className="input input-bordered w-24 md:w-auto bg-white"
+              placeholder="Search movies"
+              className="input input-bordered w-36 md:w-auto bg-white dark:bg-[#161b22]"
               value={searchQuery}
               onChange={handleSearch}
             />

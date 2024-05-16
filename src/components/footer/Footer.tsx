@@ -2,7 +2,7 @@ import marvelSVG from '/Marvel Footer SVG.png'
 
 const Footer = () => {
   return (
-    <footer className="footer footer-center pb-8 bg-slate-50 text-base-content">
+    <footer className="footer footer-center pb-8 bg-slate-50 text-base-content dark:bg-[#21262d]">
     <aside>
       <img src={marvelSVG} alt="marvel SVG" className='w-auto h-28'/>
       <p className="font-bold">
