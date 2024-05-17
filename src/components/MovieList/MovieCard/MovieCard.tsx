@@ -39,7 +39,7 @@ const MovieCard = ({ movie }: MovieCardProps) => {
         )}
       </figure>
       <div className="card-body grow-0 pb-4">
-        <h2 className="card-title line-clamp-2 h-[56px] flex align-center dark:text-[#cbd5e1] ">{movie?.title}</h2>
+        <h2 className="card-title !line-clamp-2 h-[56px] flex align-center dark:text-[#cbd5e1] ">{movie?.title}</h2>
         <p className="whitespace-normal line-clamp-2 h-12 dark:text-[#94a3b8]">
           {movie?.overview}
         </p>

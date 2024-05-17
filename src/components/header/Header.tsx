@@ -56,7 +56,7 @@ const Header = ({ searchQuery, setSearchQuery }: HeaderProps) => {
             <input
               type="text"
               placeholder="Search movies"
-              className="input input-bordered border-gray-700 w-36 md:w-auto bg-white dark:bg-[#161b22]"
+              className="input input-bordered border-gray-700 w-36 md:w-auto bg-white dark:bg-[#161b22] dark:text-[#cbd5e1] focus:border-gray-600 "
               value={searchQuery}
               onChange={handleSearch}
             />
