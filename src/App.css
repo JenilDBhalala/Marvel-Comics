@@ -1,5 +1,5 @@
 /* Hide scrollbar for Chrome, Safari and Opera */
-.no-scrollbar::-webkit-scrollbar {
+::-webkit-scrollbar {
     display: none;
 }
   
@@ -8,4 +8,5 @@
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
     overflow-y: scroll;
+    height: 100vh;
 }

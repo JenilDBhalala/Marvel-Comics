@@ -23,14 +23,14 @@ function App() {
         <Route
           path="/"
           element={
-            <>
+            <div className="no-scrollbar">
               <Header
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
               />
               <Outlet />
               <Footer />
-            </>
+            </div>
           }
         >
           <Route

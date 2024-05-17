@@ -5,7 +5,7 @@ import MovieDetailPosterSkeleton from "./MovieDetailPosterSkeleton";
 const MovieDetailsSkeleton = () => {
   const castSkeletonCount: number = 8;
   return (
-    <div className="animate-pulse min-h-screen w-full bg-zinc-200 text-black dark:bg-[#1D232A] dark:text-white">
+    <div className="animate-pulse dark:animate-pulse-dark min-h-screen w-full bg-zinc-200 text-black dark:bg-[#1D232A] dark:text-white">
       <div className="relative h-[65vh] w-full overflow-hidden">
         <MovieDetailBackdropSkeleton />
       </div>

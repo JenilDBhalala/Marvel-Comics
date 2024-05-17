@@ -85,7 +85,7 @@ const MovieList = ({ searchQuery, movieListSearchQuery }: MovieListProps) => {
 
   return (
     <>
-      <div className="flex flex-wrap justify-evenly gap-y-5 mx-3.5 mt-10 ">
+      <div className="flex flex-wrap justify-evenly gap-y-5 px-3.5 pt-10 dark:bg-[#1D232A] dark:text-white">
         {loading
           ? Array.from({ length: itemsPerPage }).map((_, index) => (
               <MovieCardSkeleton key={index} />
@@ -102,7 +102,7 @@ const MovieList = ({ searchQuery, movieListSearchQuery }: MovieListProps) => {
         pageCount={pageCount}
         previousLabel="< previous"
         renderOnZeroPageCount={null}
-        containerClassName="flex flex-wrap justify-center space-x-2 my-6"
+        containerClassName="flex flex-wrap justify-center space-x-2 py-6  dark:bg-[#1D232A]"
         activeClassName={"px-3 py-2 rounded-full bg-gray-400 text-black "}
         previousClassName="px-3 py-2 rounded-full bg-gray-200 text-gray-700"
         nextClassName="px-3 py-2 rounded-full bg-gray-200 text-gray-700"
